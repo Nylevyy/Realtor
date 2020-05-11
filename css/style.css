@@ -13,7 +13,7 @@ h2 {
 }
 body {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
 }
 .main {
 
@@ -27,9 +27,9 @@ body {
     display: flex;
     position: relative;
     justify-content: space-between;
-    background-size: auto;
-    background: url("../img/ulsk3.jpg") no-repeat right 0 top 0;
+    background: url("../img/ulsk3.jpg") no-repeat 0 -70px;
     background-origin: border-box;
+    background-size: cover;
     flex-wrap: wrap;
 }
 header {
@@ -42,6 +42,7 @@ header {
     flex-basis: 100%;
     justify-content: space-between;
     padding: 10px 15px;
+    z-index: 5;
 }
 .header-title {
     display: flex;
@@ -49,7 +50,6 @@ header {
     margin: 0;
  }
 .header-nav {
-    font-size: 18px;
     display: flex;
     justify-content: space-between;
 }
@@ -63,7 +63,10 @@ header {
     cursor: pointer;
     margin-right: 10px;
     position: relative;
-    font-size: 18px;
+    padding-top: 5px;
+}
+.nav-name {
+
 }
 .nav:hover, .nav:focus {
      -webkit-transform: scale(1.05);
@@ -91,33 +94,118 @@ header {
 .nav:focus::after, .nav:hover::after {
     width: 100%;
 }
+.hamburger-menu {
+    display: none;
+}
+/* скрываем чекбокс */
+#menu__toggle {
+    opacity: 0;
+}
+/* стилизуем кнопку */
+.menu__btn {
+    display: flex; /* используем flex для центрирования содержимого */
+    align-items: center;  /* центрируем содержимое кнопки */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 5;
+}
+/* добавляем "гамбургер" */
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+}
+.menu__btn > span::before {
+    content: '';
+    top: -8px;
+}
+.menu__btn > span::after {
+    content: '';
+    top: 8px;
+}
+/* контейнер меню */
+.menu__box {
+    display: block;
+    position: fixed;
+    visibility: hidden;
+    top: 0;
+    right: 0;
+    z-index: 4;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    background-color: #ecf1e0;
+    opacity: 0.85;
+    box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+}
+/* элементы меню */
+.menu__item {
+    display: block;
+    padding: 12px 10px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+}
+.menu__item:hover {
+    background-color: #c2dcc4;
+}
+#menu__toggle:checked ~ .menu__btn > span {
+    transform: rotate(45deg);
+}
+#menu__toggle:checked ~ .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0);
+}
+#menu__toggle:checked ~ .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+    visibility: visible;
+    left: 0;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    transition-duration: .25s;
+}
 .main-banner {
     display: flex;
     flex-basis: 100%;
     align-items: flex-start;
     align-content: space-between;
-    margin-left: 25%;
+    margin-left: 300px;
     overflow: hidden;
 }
 .main-banner-container {
     display: flex;
     flex-direction: column;
-    flex-basis: 35%;
+    width: 350px;
     flex-wrap: wrap;
     background: rgba(250, 245, 162, 0.4);
     border-radius: 10px;
     align-self: stretch;
     justify-content: space-between;
     margin-bottom: 15px;
+    font-size: 30px;
 }
 .banner-span {
     display: flex;
-    font-size: 30px;
     line-height: 33px;
     font-weight: bold;
 }
 .banner-ul {
-    font-size: 30px;
     line-height: 35px;
     font-weight: bold;
     text-align: left;
@@ -129,6 +217,7 @@ header {
     background-image: url('../img/check.svg');
     background-size: 30px;
     background-repeat: no-repeat;
+    background-position-y: center;
 }
 .button {
     background: #01a121;
@@ -138,7 +227,6 @@ header {
     padding: 10px 15px;
     cursor: pointer;
     color: black;
-    font-size: 25px;
 }
 .banner-button {
     align-self: center;
@@ -179,9 +267,9 @@ header {
     text-decoration: underline;
 }
 .label-form {
-    padding: 15px;
-    font-size: 20px;
-    line-height: 22px;
+    padding: 15px 5px;
+    font-size: 1.5em;
+   /* line-height: 22px;*/
 }
 .input-form {
     width: 35%;
@@ -198,15 +286,17 @@ header {
     height: 20px;
     margin-right: 12px;
 }
+.label-checkbox {
+    text-align: left;
+}
 .agreement-ref {
     color: blue;
-    margin-left: 15px;
 }
-.callback {
-    font-size: 40px;
+.form-span {
+    font-size: 2.5em;
     font-weight: 700;
     font-style: italic;
-    text-align: left;
+    text-align: center;
 }
 .about {
     background: rgb(240, 240, 240);
@@ -214,8 +304,6 @@ header {
     background: -webkit-linear-gradient(312deg, rgba(240, 240, 240, 0.24413515406162467) 21%, rgba(121, 196, 95, 0.4906337535014006) 81%);
     background: linear-gradient(312deg, rgba(240, 240, 240, 0.24413515406162467) 21%, rgba(121, 196, 95, 0.4906337535014006) 81%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#f0f0f0", endColorstr="#79c45f", GradientType=1);
-    font-size: 20px;
-    line-height: 22px;
     text-align: justify;
     padding: 15px;
 }
@@ -236,6 +324,9 @@ header {
 .soc {
     flex: 0.1 0 10%;
 }
+.soc-svg {
+    width: 95px;
+}
 .soc_net:hover, .soc_net:focus {
     -webkit-transform: scale(1.15);
     transform: scale(1.15);
@@ -243,21 +334,6 @@ header {
     -ms-transform: scale(1.15);
     -o-transform: scale(1.15);
     transition: all 0.17s ease;
-}
-.viber {
-    position: relative;
-    width: 95px;
-}
-.viber-pc {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-.viber-mob {
-    position: absolute;
-    left: 0;
-    top: 0;
-    display: none;
 }
 .modal-screen {
     display: none;
@@ -267,6 +343,7 @@ header {
     left: 0;
     bottom: 0;
     right: 0;
+    overflow: scroll;
 }
 .modal {
     padding: 40px;
@@ -365,6 +442,9 @@ footer {
     background: linear-gradient(312deg, rgba(238,238,238,0.24413515406162467) 21%, rgba(241,241,241,0.8911939775910365) 81%);
     position: relative;
 }
+.aside {
+    padding: 0 10px;
+}
 .filter-box {
     padding: 10px;
     display: flex;
@@ -386,8 +466,6 @@ footer {
 }
 .filter-summary {
     flex: 100%;
-    font-size: 22px;
-    line-height: 24px;
     font-weight: bold;
     text-align: start;
     cursor: pointer;
@@ -402,15 +480,11 @@ footer {
     padding: 10px 0;
 }
 .filter-name {
-    font-size: 20px;
-    line-height: 22px;
     font-style: italic;
 }
 .filter-form {
     display: flex;
     flex-wrap: nowrap;
-    font-size: 18px;
-    line-height: 20px;
     align-items: center;
 }
 .price-input {
@@ -423,7 +497,7 @@ footer {
     display: none;
 }
 .filter-form>label {
-    margin: 0 17px 0 7px;
+    margin: 0 15px 0 5px;
 }
 .filter-form>label:last-child {
     margin-right: 0;
@@ -436,16 +510,21 @@ footer {
     align-self: flex-end;
 }
 .object-list {
+    list-style: none;
+    padding: 20px;
+    display: grid;
+    grid-template-rows: repeat(auto-fill, minmax(470px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 0;
+
+
+
+    /*
+    default
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    list-style: none;
-    padding: 20px;
-}
-.object-list::after {
-    content: '';
-    flex-grow: 1;
-    width: 25%;
+*/
 }
 .object-list-item {
     display: flex;
@@ -467,7 +546,7 @@ footer {
     image-rendering: pixelated;
 }
 .preview {
-    max-height: 250px;
+    max-height: 250px !important;
 }
 .object-card-details {
     display: flex;
@@ -484,6 +563,7 @@ footer {
     line-height: 32px;
     margin-top: -10px;
     margin-bottom: 15px;
+    margin-right: 15px;
 }
 .price-square {
     color: #666666;
@@ -518,10 +598,10 @@ footer {
 .object-button {
     background: #ffffff;
     padding: 15px;
-    font-size: 25px;
     margin-top: 15px;
     margin-bottom: -10px;
     width: 100%;
+    font-size: 20px;
 }
 .object-review {
     display: flex;
@@ -536,13 +616,12 @@ footer {
     display: flex;
     flex: 1 65%;
     padding: 25px;
+    height: 650px;
     justify-content: center;
 }
 .object-details {
-
     font-size: 24px;
     line-height: 50px;
-    vertical-align: center;
 }
 .object-details-main {
     border: 1px solid #01a121;
@@ -554,7 +633,6 @@ footer {
     flex-direction: column;
     justify-content: flex-start;
     padding: 15px;
-    height: 1000px;
 }
 .info-table {
     text-align: start;
@@ -580,6 +658,9 @@ footer {
     background: rgba(153, 153, 153, 0.19);
     margin-right: 15px;
     line-height: 35px;
+}
+.formP {
+    text-align: center;
 }
 .contact-ref {
     display: inline-block;
@@ -702,19 +783,292 @@ footer {
     text-align: center;
 }
 
-@media (min-width: 1280px) {
+/* Large desktops and laptops */
+@media (min-width: 1600px) {
     .main-header {
-        background-size: cover;
-        background-position: 0 -82px;
+        background-position: left -125px;
     }
 }
-@media (max-width: 992px) {
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+   body {
+       font-size: 18px;
+   }
+    .main-header {
+        background-position: center -75px;
+        background-size: auto;
+    }
+    .main-banner-container {
+        font-size: 28px;
+    }
+    .about {
+        font-size: 20px;
+        line-height: 22px;
+    }
+    .modal {
+        width: 60%;
+    }
+    .gallery-info {
+        font-size: 22px;
+    }
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+    body {
+        font-size: 18px;
+    }
+    .main-header {
+        background-position: center -72px;
+        background-size: auto;
+    }
+    .header-nav {
+        display: none;
+    }
+    .hamburger-menu {
+        display: initial;
+    }
+
+    .main-banner-container {
+        font-size: 28px;
+    }
+    .input-form {
+        width: 37%;
+    }
+    .about {
+        font-size: 22px;
+        line-height: 24px;
+    }
+    .modal {
+        width: 60%;
+    }
     .viber-mob {
         display: block;
     }
     .viber-pc {
         display: none;
     }
+    .gallery-info {
+        font-size: 22px;
+        flex-wrap: wrap;
+        height: auto;
+    }
+    .object-gallery {
+        flex: 0 85%;
+        margin: auto;
+        height: auto;
+        max-height: 650px;
+        padding-bottom: 0;
+    }
+    .object-image {
+        max-height: 450px;
+    }
+    .object-info {
+        flex-direction: row;
+        margin: 0 25px;
+    }
+    .info-table {
+        margin-top: 0;
+        font-size: 18px;
+        flex: 60%;
+    }
+    .contact {
+        flex: 40%;
+        font-size: 20px;
+    }
+    .object-details-main {
+        width: 95%;
+        margin: auto;
+    }
+    .object-description {
+        width: 95%;
+    }
 }
 
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    body {
+        font-size: 14px;
+    }
+    .main-header {
+        min-height: auto;
+        background-position: top;
+    }
+    header {
+        line-height: 35px;
+        height: 40px;
+    }
+    .header-nav {
+        display: none;
+    }
+    .hamburger-menu {
+        display: initial;
+    }
+    .menu__btn {
+        top: 15px;
+    }
+    .main-banner {
+        margin: 0;
+        padding: 15px;
+    }
+    .main-banner-container {
+        font-size: 24px;
+        width: 94%;
+        margin: auto;
+    }
+    .profile-img {
+        display: none;
+    }
+    .input-form {
+        width: 48%;
+        font-size: 5vw;
+        line-height: 5.5vw;
+    }
+    .about {
+        font-size: 22px;
+        line-height: 24px;
+    }
+    .object-list {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        justify-content: center;
+    }
+    .soc-links {
+        justify-content: space-between;
+    }
+    .modal {
+        width: 60%;
+    }
+    .viber-mob {
+        display: block;
+    }
+    .viber-pc {
+        display: none;
+    }
+    .gallery-info {
+        font-size: 22px;
+        flex-wrap: wrap;
+        height: auto;
+    }
+    .object-gallery {
+        flex: 0 85%;
+        margin: auto;
+        height: auto;
+        max-height: 650px;
+        padding-bottom: 0;
+    }
+    .object-image {
+        max-height: 450px;
+    }
+    .object-info {
+        flex-direction: row;
+        margin: 0 25px;
+    }
+    .info-table {
+        margin-top: 0;
+        font-size: 2.5vw;
+        line-height: 3vw;
+        flex: 60%;
+    }
+    .info-table  td {
+        padding: 2px 0;
+    }
+    .contact {
+        flex: 40%;
+        font-size: 2.5vw;
+        line-height: 4.2vw;
+        text-align: center;
+    }
+    .object-details-main {
+        width: auto;
+        flex: 100%;
+        font-size: 16px;
+        line-height: 19px;
+    }
+    .address {
+        font-size: 14px;
+    }
+    .object-description {
+        width: 95%;
+        font-size: 16px;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+    .header-title {
+        font-size: 5.7vw;
+    }
+    .main-banner-container {
+        font-size: 20px;
+    }
+    .soc-svg {
+        width: 60px;
+    }
+    .input-form {
+        width: 170px;
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .banner-li {
+        background-size: 16px;
+        align-self: center;
+    }
+    .about {
+        font-size: 18px;
+        line-height: 20px;
+    }
+    .object-image {
+        max-height: 250px;
+    }
+    .object-info {
+        margin: 0 5px;
+        padding: 5px;
+    }
+    .info-table {
+        margin-top: 0;
+        font-size: 12px;
+        line-height: 16px;
+        flex: 60%;
+    }
+    .info-table  td {
+        padding: 0;
+    }
+    .object-details-main {
+        font-size: 14px;
+    }
+    .price {
+        font-size: 22px;
+    }
+    .contact {
+        padding: 5px;
+    }
+}
+
+/* Iphone 5 */
+@media (max-width: 320px) {
+    .object-details-main {
+        width: auto;
+        flex: 100%;
+        font-size: 12px;
+        line-height: 19px;
+    }
+    .address {
+        font-size: 12px;
+    }
+    .object-description {
+        width: 95%;
+        font-size: 12px;
+        line-height: 19px;
+    }
+    .contact {
+        flex: 40%;
+        font-size: 10px;
+        line-height: 14px;
+        text-align: center;
+    }
+}
 

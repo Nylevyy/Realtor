@@ -6,16 +6,9 @@ const formP = document.querySelector('#formP');
 const formRef = document.querySelector('#formRef');
 const form = document.querySelector('#form');
 
-more.addEventListener('click', toggleModal);
-close.addEventListener('click', toggleModal);
-ok.addEventListener('click', toggleModal);
-
-
 function toggleModal() {
     modal.classList.toggle("is_open");
 }
-formRef.addEventListener('click', evt => evt.preventDefault());
-formRef.addEventListener('click', toggleForm);
 
 function toggleForm() {
     formP.classList.toggle("hidden");
@@ -23,3 +16,12 @@ function toggleForm() {
 }
 
 
+more.addEventListener('click', toggleModal);
+
+close.addEventListener('click', toggleModal);
+
+ok.addEventListener('click', toggleModal);
+
+formRef.addEventListener('click', evt => evt.preventDefault());
+
+formRef.addEventListener('click', toggleForm);

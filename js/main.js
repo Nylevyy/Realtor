@@ -5,7 +5,6 @@ const close = document.querySelector('.close');
 const formP = document.querySelector('#formP');
 const formRef = document.querySelector('#formRef');
 const form = document.querySelector('#form');
-console.log(formRef);
 
 function toggleModal() {
     modal.classList.toggle("is_open");

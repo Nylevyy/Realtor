@@ -509,6 +509,21 @@ footer {
     display: flex;
     align-self: flex-end;
 }
+.back-button {
+    padding-left: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -15px;
+}
+.back-button-svg {
+    max-width: 5%;
+}
+.back-button span {
+    align-self: flex-end;
+    margin-left: 15px;
+    font-size: 1.5em;
+}
 .object-list {
     list-style: none;
     padding: 20px;
@@ -516,15 +531,6 @@ footer {
     grid-template-rows: repeat(auto-fill, minmax(470px, 1fr));
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 0;
-
-
-
-    /*
-    default
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: left;
-*/
 }
 .object-list-item {
     display: flex;
@@ -627,7 +633,7 @@ footer {
     border: 1px solid #01a121;
     width: 60%;
 }
-.object-info {
+.object-brief {
     display: flex;
     flex: 1 35%;
     flex-direction: column;
@@ -685,19 +691,17 @@ footer {
     padding: 5px;
 }
 .aside-form-checkbox {
-    display: inline;
-    font-size: 18px;
-    line-height: 20px;
+    display: flex;
     min-width: 20px;
     min-height: 20px;
     margin-right: 10px;
-    align-self: center;
+    align-self: start;
 }
 .agreement-ref-aside {
     margin: 0;
 }
 .aside-submit-button {
-    max-width: 50%;
+    max-width: 60%;
 }
 .hidden {
     display: none;
@@ -864,7 +868,7 @@ footer {
     .object-image {
         max-height: 450px;
     }
-    .object-info {
+    .object-brief {
         flex-direction: row;
         margin: 0 25px;
     }
@@ -876,6 +880,9 @@ footer {
     .contact {
         flex: 40%;
         font-size: 20px;
+    }
+    .aside-submit-button {
+        width: 30%;
     }
     .object-details-main {
         width: 95%;
@@ -960,7 +967,7 @@ footer {
     .object-image {
         max-height: 450px;
     }
-    .object-info {
+    .object-brief {
         flex-direction: row;
         margin: 0 25px;
     }
@@ -978,6 +985,14 @@ footer {
         font-size: 2.5vw;
         line-height: 4.2vw;
         text-align: center;
+        margin: inherit;
+    }
+    .aside-form {
+        font-size: 17px;
+        line-height: 22px;
+    }
+    .aside-submit-button {
+        width: 30%;
     }
     .object-details-main {
         width: auto;
@@ -991,6 +1006,7 @@ footer {
     .object-description {
         width: 95%;
         font-size: 16px;
+        line-height: 22px;
     }
 }
 
@@ -1024,7 +1040,7 @@ footer {
     .object-image {
         max-height: 250px;
     }
-    .object-info {
+    .object-brief {
         margin: 0 5px;
         padding: 5px;
     }
@@ -1045,6 +1061,10 @@ footer {
     }
     .contact {
         padding: 5px;
+    }
+    .aside-submit-button {
+        width: 40%;
+        font-size: 14px;
     }
 }
 

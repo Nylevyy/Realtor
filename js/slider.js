@@ -85,10 +85,13 @@ var multiItemSlider = (function () {
     }
 }());
 
+const multiSlider = function () {
 
-document.querySelectorAll('.slider').forEach(function(item, index){
-    item.setAttribute('slider-id', index);
-    multiItemSlider('[slider-id="'+ index +'"]');
-});
 
-var slider = multiItemSlider(".slider")
+    document.querySelectorAll('.slider').forEach(function(item, index){
+        item.setAttribute('slider-id', index);
+        multiItemSlider('[slider-id="'+ index +'"]');
+    });
+};
+
+

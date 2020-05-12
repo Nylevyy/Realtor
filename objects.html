@@ -61,49 +61,55 @@
                         <div class="filter offer-type-filter">
                             <span class="filter-name">Тип объявления</span>
                             <div class="filter-form">
-                                <input name="Квартира" type="checkbox" id="flat">
-                                <label for="flat">Квартира</label>
-                                <input name="Земельный участок" type="checkbox" id="house">
-                                <label for="house">Земельный участок</label>
-                                <input name="Гараж" type="checkbox" id="garage">
-                                <label for="garage">Гараж</label>
+                                <div class="filter-label-form"> <input name="Квартира" type="checkbox" id="flat">
+                                <label for="flat">Квартира</label></div>
+                                <div class="filter-label-form"> <input name="Земельный участок" type="checkbox" id="house">
+                                <label for="house">Земельный участок</label></div>
+                                <div class="filter-label-form"> <input name="Гараж" type="checkbox" id="garage">
+                                <label for="garage">Гараж</label></div>
                             </div>
                         </div>
                         <div class="filter area-filter">
                             <span class="filter-name">Район</span>
                             <div class="filter-form">
-                                <input type="checkbox" name="" id="len">
-                                <label for="len">Ленинский</label>
-                                <input type="checkbox" name="" id="sviyaga">
-                                <label for="sviyaga">Засвияжский</label>
-                                <input type="checkbox" name="" id="zd">
-                                <label for="zd">Железнодорожный</label>
-                                <input type="checkbox" name="" id="zavolg">
-                                <label for="zavolg">Заволжский</label>
-                                <input type="checkbox" name="" id="obl">
-                                <label for="obl">Область</label>
+                                <div class="filter-label-form"> <input type="checkbox" name="" id="len">
+                                <label for="len">Ленинский</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="" id="sviyaga">
+                                <label for="sviyaga">Засвияжский</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="" id="zd">
+                                <label for="zd">Железнодорожный</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="" id="zavolg">
+                                <label for="zavolg">Заволжский</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="" id="obl">
+                                <label for="obl">Область</label></div>
                             </div>
                         </div>
                         <div class="filter room-number-filter">
                             <span class="filter-name">Количество комнат</span>
                             <div class="filter-form">
-                                <input type="checkbox" name="1х-комнатная" id="1rm">
-                                <label for="1rm">1х-комнатная</label>
-                                <input type="checkbox" name="2х-комнатная" id="2rm">
-                                <label for="2rm">2х-комнатная</label>
-                                <input type="checkbox" name="3х-комнатная" id="3rm">
-                                <label for="3rm">3х-комнатная</label>
-                                <input type="checkbox" name="4х-комнатная и более" id="4rm+">
-                                <label for="4rm+">4х-комнатная и более</label>
+                                <div class="filter-label-form"> <input type="checkbox" name="1х-комнатная" id="1rm">
+                                <label for="1rm">1х-комнатная</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="2х-комнатная" id="2rm">
+                                <label for="2rm">2х-комнатная</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="3х-комнатная" id="3rm">
+                                <label for="3rm">3х-комнатная</label></div>
+                                <div class="filter-label-form"> <input type="checkbox" name="4х-комнатная и более" id="4rm+">
+                                <label for="4rm+">4х-комнатная и более</label></div>
                             </div>
                         </div>
                         <div class="filter price-filter">
                             <span class="filter-name">Цена</span>
                             <div class="filter-form">
-                                <label for="pricemin">От</label>
-                                <input min="0" max="99999999" type="number" id="pricemin" class="price-input">Руб
-                                <label for="pricemax" style="margin-left: 77px;">До</label>
-                                <input min="0" max="99999999" type="number" id="pricemax" class="price-input">Руб
+                                <div class="filter-label-form filter-label-form filter-label-input-form">
+                                    <label for="pricemin" class="filter-form-label">От</label>
+                                    <input min="0" max="99999999" type="number" id="pricemin"
+                                           class="price-input">Руб
+                                </div>
+                                <div class="filter-label-form">
+                                    <label for="pricemax" class="filter-form-label">До</label>
+                                    <input min="0" max="99999999" type="number" id="pricemax"
+                                           class="price-input ">Руб
+                                </div>
                             </div>
                         </div>
                         <button type="submit" class="filter-submit-button">Принять</button>

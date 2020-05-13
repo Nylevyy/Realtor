@@ -47,29 +47,30 @@ function toggleObjectList() {
 }
 
 function createObjectListItem(object) {
-
     const { images, price, roomNumber, floor, area, city, district, address, material, year, maxFloor, height, balcony, toilet, windowView, description } = object;
     const areaPrice = Math.floor(price / area);
+
+    const sliderWrapper = document.createElement('div');
+    sliderWrapper.className = 'slider__wrapper';
+    getObjects('./json/' + images).then(function (data) {
+        data.forEach( function (photoItems) {
+            Object.values(photoItems).forEach(function (photoItem) {
+                sliderWrapper.insertAdjacentHTML("beforeend", `
+                    <div class="slider__item">
+                        <img src="img/${photoItem}" class="object-image preview" alt="photo">
+                    </div>
+                `)
+            })
+        })
+    });
+
     const objectListItem = document.createElement('li');
     objectListItem.info = object;
     objectListItem.className = 'object-list-item';
     objectListItem.insertAdjacentHTML("beforeend", `
         <article class="object-card">
             <div class="slider">
-                <div class="slider__wrapper">
-                    <div class="slider__item">
-                        <img src="img/flat-template.jpg" class="object-image preview" alt="photo">
-                    </div>
-                    <div class="slider__item">
-                        <img src="img/var-10-128/1kom.jpg" class="object-image preview" alt="photo">
-                    </div>
-                    <div class="slider__item">
-                        <img src="img/var-10-128/2kom.jpg" class="object-image preview" alt="photo">
-                    </div>
-                    <div class="slider__item">
-                        <img src="img/var-10-128/3kom.jpg" class="object-image preview" alt="photo">
-                    </div>
-                </div>
+                
                 <a class="slider__control slider__control_left" href="#" role="button"></a>
                 <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
             </div>
@@ -88,31 +89,34 @@ function createObjectListItem(object) {
             </div>
         </article>
     `);
-    objectList.insertAdjacentElement("beforeend", objectListItem);
+    const slider = objectListItem.querySelector('.slider');
+    slider.insertAdjacentElement("afterbegin", sliderWrapper);
 
+    objectList.insertAdjacentElement("beforeend", objectListItem);
 }
 
 function createObjectInfo(objectInfo) {
     const { images, price, roomNumber, floor, area, city, district, address, material, year, maxFloor, height, balcony, toilet, windowView, description } = objectInfo;
 
+    const sliderWrapper = document.createElement('div');
+    sliderWrapper.className = 'slider__wrapper';
+    getObjects('./json/' + images).then(function (data) {
+        data.forEach( function (photoItems) {
+            Object.values(photoItems).forEach(function (photoItem) {
+                sliderWrapper.insertAdjacentHTML("beforeend", `
+                    <div class="slider__item">
+                        <img src="img/${photoItem}" class="object-image preview" alt="photo">
+                    </div>
+                `)
+            })
+        })
+    });
+
     objectReview.insertAdjacentHTML("afterbegin", `
             <div class="gallery-info">
                 <div class="object-gallery">
                     <div class="slider slider-info">
-                        <div class="slider__wrapper">
-                            <div class="slider__item">
-                                <img src="img/flat-template.jpg" class="object-image" alt="photo">
-                            </div>
-                            <div class="slider__item">
-                                <img src="img/var-10-128/ulsk1.jpg" class="object-image" alt="photo">
-                            </div>
-                            <div class="slider__item">
-                                <img src="img/var-10-128/2kom.jpg" class="object-image" alt="photo">
-                            </div>
-                            <div class="slider__item">
-                                <img src="img/var-10-128/3kom.jpg" class="object-image" alt="photo">
-                            </div>
-                        </div>
+                        <!--js-sliderWrapper-->
                         <a class="slider__control slider__control_left" href="#" role="button"></a>
                         <a class="slider__control slider__control_right slider__control_show" href="#" role="button"></a>
                     </div>
@@ -185,7 +189,8 @@ function createObjectInfo(objectInfo) {
                 </div>
             </div>
         `);
-
+    const slider = objectReview.querySelector('.slider');
+    slider.insertAdjacentElement("afterbegin", sliderWrapper);
     const moreAside = objectReview.querySelector('#more');
     const formRef = document.querySelector('#formRef');
 
@@ -202,7 +207,6 @@ function objectInfoShow(event) {
         const objectInfo = objectButton.closest('li').info;
         objectReview.textContent = '';
         createObjectInfo(objectInfo);
-        console.log(document.querySelector('.slider-info'));
         toggleObjectList();
         multiItemSlider('.slider-info');
     }
@@ -212,15 +216,12 @@ function init() {
 
     getObjects('./json/realtor.json').then(function (data) {
         data.forEach(createObjectListItem);
-        multiSlider();
+
     });
 
-
     objectList.addEventListener('click', objectInfoShow);
-
     close.addEventListener('click', toggleModal);
     ok.addEventListener('click', toggleModal);
-
 }
 
 function indexInit() {
@@ -228,6 +229,7 @@ function indexInit() {
     ok.addEventListener('click', toggleModal);
     more.addEventListener('click', toggleModal);
 }
+
 
 if(more) {
     indexInit();

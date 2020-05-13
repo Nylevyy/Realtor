@@ -105,7 +105,7 @@ function createObjectInfo(objectInfo) {
             Object.values(photoItems).forEach(function (photoItem) {
                 sliderWrapper.insertAdjacentHTML("beforeend", `
                     <div class="slider__item">
-                        <img src="img/${photoItem}" class="object-image preview" alt="photo">
+                        <img src="img/${photoItem}" class="object-image" alt="photo">
                     </div>
                 `)
             })

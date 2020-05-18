@@ -216,7 +216,7 @@ function showObjectInfo(event) {
         createObjectInfo(objectInfo);
         toggleObjectList();
 
-        multiItemSlider('.slider-info');  // Подключаем slider.js
+         setTimeout(multiItemSlider('.slider-info'), 17);   // Подключаем slider.js
     }
 }
 

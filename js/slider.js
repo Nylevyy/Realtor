@@ -1,6 +1,6 @@
 'use strict';
 var multiItemSlider = (function () {
-    return function (selector, config) {
+    return function (selector) {
         var
             _mainElement = document.querySelector(selector), // основный элемент блока
             _sliderWrapper = _mainElement.querySelector('.slider__wrapper'), // обертка для .slider-item
@@ -22,7 +22,7 @@ var multiItemSlider = (function () {
         var position = {
             getMin: 0,
             getMax: _items.length - 1,
-        }
+        };
 
         var _transformItem = function (direction) {
             if (direction === 'right') {
@@ -52,7 +52,7 @@ var multiItemSlider = (function () {
                 _transform += _step;
             }
             _sliderWrapper.style.transform = 'translateX(' + _transform + '%)';
-        }
+        };
 
         // обработчик события click для кнопок "назад" и "вперед"
         var _controlClick = function (e) {
@@ -68,7 +68,7 @@ var multiItemSlider = (function () {
             _sliderControls.forEach(function (item) {
                 item.addEventListener('click', _controlClick);
             });
-        }
+        };
 
         // инициализация
         _setUpListeners();
@@ -85,14 +85,5 @@ var multiItemSlider = (function () {
     }
 }());
 
-const multiSlider = function () {
-    console.log('multi start');
-    document.querySelectorAll('.slider').forEach(function(item, index){
-        item.setAttribute('slider-id', index);
-        multiItemSlider('[slider-id="'+ index +'"]');
-        console.log('success')
-    });
-    console.log('done')
-};
 
 

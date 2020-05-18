@@ -507,7 +507,8 @@ footer {
     margin: 0 10px 0 5px;
 }
 .filter-label-form {
-     display: flex;
+    display: flex;
+    align-items: center;
  }
 .filter-label-input-form:first-child {
     margin-right: 40px;

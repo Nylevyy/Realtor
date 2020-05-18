@@ -1,3 +1,4 @@
+//by itchief
 'use strict';
 var multiItemSlider = (function () {
     return function (selector, config) {
@@ -86,13 +87,11 @@ var multiItemSlider = (function () {
 }());
 
 const multiSlider = function () {
-    console.log('multi start');
-    document.querySelectorAll('.slider').forEach(function(item, index){
-        item.setAttribute('slider-id', index);
+    console.log('hi');
+    const slider = document.querySelectorAll('.slider');
+    slider.forEach(function(item, index){
         multiItemSlider('[slider-id="'+ index +'"]');
-        console.log('success')
     });
-    console.log('done')
 };
 
 

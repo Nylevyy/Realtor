@@ -8,8 +8,7 @@ const objectReview = document.querySelector('.object-review');  //obj
 const filterBox = document.querySelector('.filter-box'); //obj
 const backButton = document.querySelector('.back-button'); //obj
 
-
-
+// Fetch данных из БД
 const getObjects = async function(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -18,53 +17,61 @@ const getObjects = async function(url) {
     return response.json();
 };
 
-
+// Открываем модальное окно с соглашением
 function toggleModal() {
     modal.classList.toggle("is_open");
 }
 
-function toggleForm(event) {
+// Раскрываем форму обратной связи
+function showForm(event) {
     event.preventDefault();
 
-    const formP = document.querySelector('#formP');
-    const form = document.querySelector('#form');
-    const tableInfo = document.querySelector('.info-table');
-    const objectBrief = document.querySelector('.object-brief');
+    const formP = document.querySelector('#formP'); // Текст по умолчанию
+    const form = document.querySelector('#form');   // Форма обратной связи
+    const tableInfo = document.querySelector('.info-table');    // Таблица с параметрами объекта
+    const objectBrief = document.querySelector('.object-brief');    // Контейнер с таблицей и формой
 
-    objectBrief.style.flexDirection = 'column';
+    objectBrief.style.flexDirection = 'column'; // Реструтурируем для вывода формы вверх
     tableInfo.style.order = '2';
-    formP.classList.toggle("hidden");
+    formP.classList.toggle("hidden");   // Замещаем текст формой
     form.classList.toggle("hidden");
+
+    const moreAside = objectReview.querySelector('#more');  /* Обработчик для модального.. */
+    moreAside.addEventListener('click', toggleModal);   /* ..окна с соглашением */
 }
 
+// Раскрываем подробное описание объекта (при клике на "Подробнее")
 function toggleObjectList() {
     objectReview.classList.toggle('hidden');
     objectList.classList.toggle('hidden');
     backButton.classList.toggle('hidden');
     filterBox.classList.toggle('hidden');
 
-    backButton.addEventListener('click', toggleObjectList)
+    backButton.addEventListener('click', toggleObjectList)  // Обработчик для кнопки "Назад"
 }
 
-function createObjectListItem(object) {
-    const { images, price, roomNumber, floor, area, city, district, address, material, year, maxFloor, height, balcony, toilet, windowView, description } = object;
-    const areaPrice = Math.floor(price / area);
-
+// Создаем и наполняем контейнер с фото
+function createSliderWrapper(images) {
     const sliderWrapper = document.createElement('div');
     sliderWrapper.className = 'slider__wrapper';
-    getObjects('./json/' + images).then(function (data) {
-        data.forEach( function (photoItems) {
-            Object.values(photoItems).forEach(function (photoItem) {
-                sliderWrapper.insertAdjacentHTML("beforeend", `
-                    <div class="slider__item">
-                        <img src="img/${photoItem}" class="object-image preview" alt="photo">
-                    </div>
-                `)
-            })
-        })
+    images.forEach(photoItem => {
+        sliderWrapper.insertAdjacentHTML("beforeend", `
+            <div class="slider__item">
+                <img src="img/${photoItem}" class="object-image" alt="photo">
+            </div>
+        `)
     });
+    return sliderWrapper
+}
 
-    const objectListItem = document.createElement('li');
+// Создаем и наполняем карточку объекта
+function createObjectListItem(object, index) {
+
+    // Деструктурируем объект
+    const { images, price, roomNumber, floor, area, city, district, address, material, year,
+        maxFloor, height, balcony, toilet, windowView, description } = object;
+    const areaPrice = Math.floor(price / area);
+    const objectListItem = document.createElement('li'); // Создаем саму карточку
     objectListItem.info = object;
     objectListItem.className = 'object-list-item';
     objectListItem.insertAdjacentHTML("beforeend", `
@@ -90,28 +97,24 @@ function createObjectListItem(object) {
         </article>
     `);
     const slider = objectListItem.querySelector('.slider');
+
+    const sliderWrapper = createSliderWrapper(images);  // Добавляем фото
+    slider.setAttribute('slider-id', index); // Индекс для slider.js
     slider.insertAdjacentElement("afterbegin", sliderWrapper);
 
+    // Добавляем класс для уменьшения размера фото
+    sliderWrapper.querySelectorAll('.object-image').forEach(item => item.classList.add('preview'));
+
     objectList.insertAdjacentElement("beforeend", objectListItem);
+
+    multiItemSlider('[slider-id="' + index + '"]') // Подключаем slider.js
 }
 
+// Создаем и наполняем контейнер с подробной информацией об объекте
 function createObjectInfo(objectInfo) {
-    const { images, price, roomNumber, floor, area, city, district, address, material, year, maxFloor, height, balcony, toilet, windowView, description } = objectInfo;
-
-    const sliderWrapper = document.createElement('div');
-    sliderWrapper.className = 'slider__wrapper';
-    getObjects('./json/' + images).then(function (data) {
-        data.forEach( function (photoItems) {
-            Object.values(photoItems).forEach(function (photoItem) {
-                sliderWrapper.insertAdjacentHTML("beforeend", `
-                    <div class="slider__item">
-                        <img src="img/${photoItem}" class="object-image" alt="photo">
-                    </div>
-                `)
-            })
-        })
-    });
-
+    // Деструктурируем объект
+    const { images, price, roomNumber, floor, area, city, district, address, material, year,
+        maxFloor, height, balcony, toilet, windowView, description } = objectInfo;
     objectReview.insertAdjacentHTML("afterbegin", `
             <div class="gallery-info">
                 <div class="object-gallery">
@@ -189,52 +192,60 @@ function createObjectInfo(objectInfo) {
                 </div>
             </div>
         `);
-    const slider = objectReview.querySelector('.slider');
-    slider.insertAdjacentElement("afterbegin", sliderWrapper);
-    const moreAside = objectReview.querySelector('#more');
-    const formRef = document.querySelector('#formRef');
 
-    moreAside.addEventListener('click', toggleModal);
-    formRef.addEventListener('click', toggleForm);
+    const slider = objectReview.querySelector('.slider');
+    const sliderWrapper = createSliderWrapper(images);  // Добавляем фото..
+    slider.insertAdjacentElement("afterbegin", sliderWrapper);  // ..и вставляем
+
+
+    const formRef = document.querySelector('#formRef'); // Обработчик для формы обратной связи
+    formRef.addEventListener('click', showForm);
 }
 
-function objectInfoShow(event) {
+/* Запускаем функции наполнения содержимого и раскрытия подробной информации об объекте,
+    добавляем обработчики событий для кнопки "Подробнее"                              */
+function showObjectInfo(event) {
     const target = event.target;
     const objectButton = target.closest('.object-button');
 
-
     if (objectButton) {
         const objectInfo = objectButton.closest('li').info;
-        objectReview.textContent = '';
+        objectReview.textContent = '';  // Очищаем от предыдущего объекта
+
+        // Создаем содержимое
         createObjectInfo(objectInfo);
         toggleObjectList();
-        multiItemSlider('.slider-info');
+
+        multiItemSlider('.slider-info');  // Подключаем slider.js
     }
 }
 
+
+// Инициализация для страницы objects.html
 function init() {
 
-    getObjects('./json/realtor.json').then(function (data) {
-        data.forEach(createObjectListItem);
+    // Динамическое наполнение страницы
+    getObjects('./json/realtor.json').then(data => data.forEach(createObjectListItem));
 
-    });
 
-    objectList.addEventListener('click', objectInfoShow);
+    // Добавляем различные обработчики события click
+    objectList.addEventListener('click', showObjectInfo);
     close.addEventListener('click', toggleModal);
     ok.addEventListener('click', toggleModal);
 }
 
+// Инициализация для страницы index.html
 function indexInit() {
     close.addEventListener('click', toggleModal);
     ok.addEventListener('click', toggleModal);
     more.addEventListener('click', toggleModal);
 }
 
-
-if(more) {
-    indexInit();
-} else {
+// Страница определяется по наличию списка объектов
+if(objectList) {
     init()
+} else {
+    indexInit();
 }
 
 

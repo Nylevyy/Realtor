@@ -481,6 +481,7 @@ footer {
 }
 .filter-name {
     font-style: italic;
+    font-weight: bold;
 }
 .filter-form {
     display: flex;
@@ -496,11 +497,20 @@ footer {
 .price-input::-webkit-inner-spin-button {
     display: none;
 }
-.filter-form>label {
+.filter-form > .filter-label-form > label {
     margin: 0 15px 0 5px;
 }
 .filter-form>label:last-child {
     margin-right: 0;
+}
+.filter-form-label {
+    margin: 0 10px 0 5px;
+}
+.filter-label-form {
+     display: flex;
+ }
+.filter-label-input-form:first-child {
+    margin-right: 40px;
 }
 .filter-submit-button {
     padding: 5px 10px;
@@ -853,6 +863,9 @@ footer {
     .viber-pc {
         display: none;
     }
+    .filter-box {
+        font-size: 14px;
+    }
     .gallery-info {
         font-size: 22px;
         flex-wrap: wrap;
@@ -935,6 +948,13 @@ footer {
     .about {
         font-size: 22px;
         line-height: 24px;
+    }
+    .filter-box {
+        font-size: 12px;
+        line-height: 15px;
+    }
+    .filter-form {
+        flex-wrap: wrap;
     }
     .object-list {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -1036,6 +1056,9 @@ footer {
     .about {
         font-size: 18px;
         line-height: 20px;
+    }
+    .filter-label-form {
+        margin-bottom: 5px;
     }
     .object-image {
         max-height: 250px;

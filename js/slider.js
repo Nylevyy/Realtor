@@ -86,12 +86,13 @@ var multiItemSlider = (function () {
 }());
 
 const multiSlider = function () {
-
-
+    console.log('multi start');
     document.querySelectorAll('.slider').forEach(function(item, index){
         item.setAttribute('slider-id', index);
         multiItemSlider('[slider-id="'+ index +'"]');
+        console.log('success')
     });
+    console.log('done')
 };
 
 

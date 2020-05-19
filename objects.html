@@ -57,8 +57,8 @@
             <aside class="aside">
                 <details class="filter-box">
                     <summary class="filter-summary">Фильтр</summary>
-                    <form>
-                        <div class="filter offer-type-filter">
+                    <form id="filter">
+                        <div class="filter" role="checkbox" id="type">
                             <span class="filter-name">Тип объявления</span>
                             <div class="filter-form">
                                 <div class="filter-label-form"> <input name="Квартира" type="checkbox" id="flat">
@@ -69,38 +69,38 @@
                                 <label for="garage">Гараж</label></div>
                             </div>
                         </div>
-                        <div class="filter area-filter">
+                        <div class="filter" role="checkbox" id="district">
                             <span class="filter-name">Район</span>
                             <div class="filter-form">
-                                <div class="filter-label-form"> <input type="checkbox" name="Ленинский" id="len">
+                                <div class="filter-label-form"> <input type="checkbox" name="Ленинский район" id="len">
                                 <label for="len">Ленинский</label></div>
-                                <div class="filter-label-form"> <input type="checkbox" name="Засвияжский" id="sviyaga">
+                                <div class="filter-label-form"> <input type="checkbox" name="Засвияжский район" id="sviyaga">
                                 <label for="sviyaga">Засвияжский</label></div>
-                                <div class="filter-label-form"> <input type="checkbox" name="Железнодорожный" id="zd">
+                                <div class="filter-label-form"> <input type="checkbox" name="Железнодорожный район" id="zd">
                                 <label for="zd">Железнодорожный</label></div>
-                                <div class="filter-label-form"> <input type="checkbox" name="Заволжский" id="zavolg">
+                                <div class="filter-label-form"> <input type="checkbox" name="Заволжский район" id="zavolg">
                                 <label for="zavolg">Заволжский</label></div>
                                 <div class="filter-label-form"> <input type="checkbox" name="Область" id="obl">
                                 <label for="obl">Область</label></div>
                             </div>
                         </div>
-                        <div class="filter room-number-filter">
+                        <div class="filter" role="checkbox" id="roomNumber">
                             <span class="filter-name">Количество комнат</span>
                             <div class="filter-form">
-                                <div class="filter-label-form"> <input type="checkbox" name="1х-комнатная" id="1rm">
+                                <div class="filter-label-form"> <input type="checkbox" name="1" id="1rm">
                                 <label for="1rm">1х-комнатная</label></div>
-                                <div class="filter-label-form"> <input type="checkbox" name="2х-комнатная" id="2rm">
+                                <div class="filter-label-form"> <input type="checkbox" name="2" id="2rm">
                                 <label for="2rm">2х-комнатная</label></div>
-                                <div class="filter-label-form"> <input type="checkbox" name="3х-комнатная" id="3rm">
+                                <div class="filter-label-form"> <input type="checkbox" name="3" id="3rm">
                                 <label for="3rm">3х-комнатная</label></div>
-                                <div class="filter-label-form"> <input type="checkbox" name="4х-комнатная и более" id="4rm+">
+                                <div class="filter-label-form"> <input type="checkbox" name="4" id="4rm+">
                                 <label for="4rm+">4х-комнатная и более</label></div>
                             </div>
                         </div>
-                        <div class="filter price-filter">
+                        <div class="filter" id="price">
                             <span class="filter-name">Цена</span>
                             <div class="filter-form">
-                                <div class="filter-label-form filter-label-form filter-label-input-form">
+                                <div class="filter-label-form filter-label-input-form">
                                     <label for="pricemin" class="filter-form-label">От</label>
                                     <input min="0" max="99999999" type="number" id="pricemin"
                                            class="price-input">Руб
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="filter-submit-button">Принять</button>
+                        <button type="submit" class="filter-submit-button" id="filterSubmit">Принять</button>
                     </form>
                 </details>
                 <div class="back-button hidden">
@@ -145,6 +145,7 @@
         </nav>
     </footer>
     <script src="js/slider.js"></script>
+    <script src="js/filter.js"></script>
     <script src="js/main.js"></script>
 </body>
 

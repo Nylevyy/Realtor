@@ -69,8 +69,9 @@ function createObjectListItem(object, index) {
 
     // Деструктурируем объект
     const { images, price, roomNumber, floor, area, city, district, address, material, year,
-        maxFloor, height, balcony, toilet, windowView, description } = object;
+        maxFloor, height, balcony, toilet, windowView, description, type } = object;
     const areaPrice = Math.floor(price / area);
+
     const objectListItem = document.createElement('li'); // Создаем саму карточку
     objectListItem.info = object;
     objectListItem.className = 'object-list-item';
@@ -105,9 +106,12 @@ function createObjectListItem(object, index) {
     // Добавляем класс для уменьшения размера фото
     sliderWrapper.querySelectorAll('.object-image').forEach(item => item.classList.add('preview'));
 
+    objectListItem.filterAttributes = { type, district, roomNumber, price };
+
     objectList.insertAdjacentElement("beforeend", objectListItem);
 
     multiItemSlider('[slider-id="' + index + '"]') // Подключаем slider.js
+
 }
 
 // Создаем и наполняем контейнер с подробной информацией об объекте
@@ -215,8 +219,7 @@ function showObjectInfo(event) {
         // Создаем содержимое
         createObjectInfo(objectInfo);
         toggleObjectList();
-
-        multiItemSlider('.slider-info');  // Подключаем slider.js
+        setTimeout(multiItemSlider('.slider-info'), 17);  // Подключаем slider.js {УДАЛИТЬ ТАЙМАУТ}
     }
 }
 

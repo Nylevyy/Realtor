@@ -3,10 +3,10 @@ const modal = document.querySelector("#ya-lic");
 const ok = document.querySelector("#ok");
 const close = document.querySelector('.close');
 const more = document.querySelector('#more');
-const objectList = document.querySelector('.object-list');  //obj
-const objectReview = document.querySelector('.object-review');  //obj
-const filterBox = document.querySelector('.filter-box'); //obj
-const backButton = document.querySelector('.back-button'); //obj
+const objectList = document.querySelector('.object-list');
+const objectReview = document.querySelector('.object-review');
+const filterBox = document.querySelector('.filter-box');
+const backButton = document.querySelector('.back-button');
 
 // Fetch данных из БД
 const getObjects = async function(url) {
@@ -219,7 +219,7 @@ function showObjectInfo(event) {
         // Создаем содержимое
         createObjectInfo(objectInfo);
         toggleObjectList();
-        setTimeout(multiItemSlider('.slider-info'), 17);  // Подключаем slider.js {УДАЛИТЬ ТАЙМАУТ}
+        multiItemSlider('.slider-info');  // Подключаем slider.js
     }
 }
 

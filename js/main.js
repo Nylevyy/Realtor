@@ -8,6 +8,7 @@ const objectReview = document.querySelector('.object-review');
 const filterBox = document.querySelector('.filter-box');
 const backButton = document.querySelector('.back-button');
 
+let offset = null;
 // Fetch данных из БД
 const getObjects = async function(url) {
     const response = await fetch(url);
@@ -41,11 +42,14 @@ function showForm(event) {
 }
 
 // Раскрываем подробное описание объекта (при клике на "Подробнее")
-function toggleObjectList() {
+function toggleObjectList(isBack) {
     objectReview.classList.toggle('hidden');
     objectList.classList.toggle('hidden');
     backButton.classList.toggle('hidden');
     filterBox.classList.toggle('hidden');
+
+    if (isBack) offset.scrollIntoView({behavior: "smooth"}); // При возврате к списку скроллим обратно
+    else document.getElementById('objects').scrollIntoView({behavior: "smooth"}); // Скроллим вверх
 
     backButton.addEventListener('click', toggleObjectList)  // Обработчик для кнопки "Назад"
 }
@@ -215,10 +219,10 @@ function showObjectInfo(event) {
     if (objectButton) {
         const objectInfo = objectButton.closest('li').info;
         objectReview.textContent = '';  // Очищаем от предыдущего объекта
-
+        offset = objectButton.closest('li');
         // Создаем содержимое
         createObjectInfo(objectInfo);
-        toggleObjectList();
+        toggleObjectList(false);
         multiItemSlider('.slider-info');  // Подключаем slider.js
     }
 }

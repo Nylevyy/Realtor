@@ -27,7 +27,7 @@ body {
     display: flex;
     position: relative;
     justify-content: space-between;
-    background: url("../img/ulsk3.jpg") no-repeat 0 -70px;
+    background: url("../img/main/ulsk3.jpg") no-repeat 0 -70px;
     background-origin: border-box;
     background-size: cover;
     flex-wrap: wrap;
@@ -214,7 +214,7 @@ header {
 .banner-li {
     list-style-type: none;
     padding-left: 1.5em;
-    background-image: url('../img/check.svg');
+    background-image: url('../img/main/check.svg');
     background-size: 30px;
     background-repeat: no-repeat;
     background-position-y: center;
@@ -513,10 +513,10 @@ footer {
 .filter-label-input-form:first-child {
     margin-right: 40px;
 }
-.filter-submit-button {
+.filter-reset-button {
     padding: 5px 10px;
     color: black;
-    background: #eeeeee;
+    background: #a5ee8c;
     display: flex;
     align-self: flex-end;
 }
@@ -540,7 +540,7 @@ footer {
     padding: 20px;
     display: grid;
     grid-template-rows: repeat(auto-fill, minmax(470px, 1fr));
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
     grid-gap: 0;
 }
 .object-list-item {
@@ -560,7 +560,6 @@ footer {
     max-height: 600px;
     width: 100%;
     flex: 1 100%;
-    image-rendering: pixelated;
 }
 .preview {
     max-height: 250px !important;

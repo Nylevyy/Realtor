@@ -3,10 +3,10 @@ const modal = document.querySelector("#ya-lic");
 const ok = document.querySelector("#ok");
 const close = document.querySelector('.close');
 const more = document.querySelector('#more');
-const objectList = document.querySelector('.object-list');  //obj
-const objectReview = document.querySelector('.object-review');  //obj
-const filterBox = document.querySelector('.filter-box'); //obj
-const backButton = document.querySelector('.back-button'); //obj
+const objectList = document.querySelector('.object-list');
+const objectReview = document.querySelector('.object-review');
+const filterBox = document.querySelector('.filter-box');
+const backButton = document.querySelector('.back-button');
 
 // Fetch данных из БД
 const getObjects = async function(url) {
@@ -69,8 +69,9 @@ function createObjectListItem(object, index) {
 
     // Деструктурируем объект
     const { images, price, roomNumber, floor, area, city, district, address, material, year,
-        maxFloor, height, balcony, toilet, windowView, description } = object;
+        maxFloor, height, balcony, toilet, windowView, description, type } = object;
     const areaPrice = Math.floor(price / area);
+
     const objectListItem = document.createElement('li'); // Создаем саму карточку
     objectListItem.info = object;
     objectListItem.className = 'object-list-item';
@@ -105,9 +106,12 @@ function createObjectListItem(object, index) {
     // Добавляем класс для уменьшения размера фото
     sliderWrapper.querySelectorAll('.object-image').forEach(item => item.classList.add('preview'));
 
+    objectListItem.filterAttributes = { type, district, roomNumber, price };
+
     objectList.insertAdjacentElement("beforeend", objectListItem);
 
     multiItemSlider('[slider-id="' + index + '"]') // Подключаем slider.js
+
 }
 
 // Создаем и наполняем контейнер с подробной информацией об объекте
@@ -215,8 +219,7 @@ function showObjectInfo(event) {
         // Создаем содержимое
         createObjectInfo(objectInfo);
         toggleObjectList();
-
-         setTimeout(multiItemSlider('.slider-info'), 17);   // Подключаем slider.js
+        multiItemSlider('.slider-info');  // Подключаем slider.js
     }
 }
 

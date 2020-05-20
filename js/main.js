@@ -8,7 +8,8 @@ const objectReview = document.querySelector('.object-review');
 const filterBox = document.querySelector('.filter-box');
 const backButton = document.querySelector('.back-button');
 
-let offset = null;
+let offset = null;  // Временно храним ссылку на карточку объекта для скролла обратно (showObjectInfo)
+
 // Fetch данных из БД
 const getObjects = async function(url) {
     const response = await fetch(url);
@@ -27,18 +28,18 @@ function toggleModal() {
 function showForm(event) {
     event.preventDefault();
 
-    const formP = document.querySelector('#formP'); // Текст по умолчанию
-    const form = document.querySelector('#form');   // Форма обратной связи
-    const tableInfo = document.querySelector('.info-table');    // Таблица с параметрами объекта
+    const formP = document.querySelector('#formP');                 // Текст по умолчанию
+    const form = document.querySelector('#form');                   // Форма обратной связи
+    const tableInfo = document.querySelector('.info-table');        // Таблица с параметрами объекта
     const objectBrief = document.querySelector('.object-brief');    // Контейнер с таблицей и формой
 
-    objectBrief.style.flexDirection = 'column'; // Реструтурируем для вывода формы вверх
+    objectBrief.style.flexDirection = 'column';         // Реструтурируем для вывода формы вверх
     tableInfo.style.order = '2';
-    formP.classList.toggle("hidden");   // Замещаем текст формой
+    formP.classList.toggle("hidden");                   // Замещаем текст формой
     form.classList.toggle("hidden");
 
     const moreAside = objectReview.querySelector('#more');  /* Обработчик для модального.. */
-    moreAside.addEventListener('click', toggleModal);   /* ..окна с соглашением */
+    moreAside.addEventListener('click', toggleModal);       /* ..окна с соглашением */
 }
 
 // Раскрываем подробное описание объекта (при клике на "Подробнее")
@@ -104,7 +105,7 @@ function createObjectListItem(object, index) {
     const slider = objectListItem.querySelector('.slider');
 
     const sliderWrapper = createSliderWrapper(images);  // Добавляем фото
-    slider.setAttribute('slider-id', index); // Индекс для slider.js
+    slider.setAttribute('slider-id', index);            // Индекс для slider.js
     slider.insertAdjacentElement("afterbegin", sliderWrapper);
 
     // Добавляем класс для уменьшения размера фото
@@ -114,7 +115,7 @@ function createObjectListItem(object, index) {
 
     objectList.insertAdjacentElement("beforeend", objectListItem);
 
-    multiItemSlider('[slider-id="' + index + '"]') // Подключаем slider.js
+    multiItemSlider('[slider-id="' + index + '"]')       // Подключаем slider.js
 
 }
 
@@ -202,11 +203,11 @@ function createObjectInfo(objectInfo) {
         `);
 
     const slider = objectReview.querySelector('.slider');
-    const sliderWrapper = createSliderWrapper(images);  // Добавляем фото..
+    const sliderWrapper = createSliderWrapper(images);          // Добавляем фото..
     slider.insertAdjacentElement("afterbegin", sliderWrapper);  // ..и вставляем
 
 
-    const formRef = document.querySelector('#formRef'); // Обработчик для формы обратной связи
+    const formRef = document.querySelector('#formRef');     // Обработчик для формы обратной связи
     formRef.addEventListener('click', showForm);
 }
 
@@ -218,12 +219,13 @@ function showObjectInfo(event) {
 
     if (objectButton) {
         const objectInfo = objectButton.closest('li').info;
-        objectReview.textContent = '';  // Очищаем от предыдущего объекта
-        offset = objectButton.closest('li');
-        // Создаем содержимое
-        createObjectInfo(objectInfo);
+        objectReview.textContent = '';          // Очищаем от предыдущего объекта
+        offset = objectButton.closest('li');    // Запоминаем карточку
+
+
+        createObjectInfo(objectInfo);           // Создаем содержимое
         toggleObjectList(false);
-        multiItemSlider('.slider-info');  // Подключаем slider.js
+        multiItemSlider('.slider-info');        // Подключаем slider.js
     }
 }
 

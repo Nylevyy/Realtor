@@ -3572,7 +3572,11 @@
   -webkit-animation-delay: 1s;
   animation-delay: 1s;
 }
-
+.animated.delay-0\.6s {
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+  animation-iteration-count: 2;
+}
 .animated.delay-2s {
   -webkit-animation-delay: 2s;
   animation-delay: 2s;
@@ -3613,6 +3617,7 @@
   animation-duration: 3s;
 }
 
+/*noinspection CssInvalidMediaFeature*/
 @media (print), (prefers-reduced-motion: reduce) {
   .animated {
     -webkit-animation-duration: 1ms !important;

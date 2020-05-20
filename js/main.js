@@ -32,14 +32,20 @@ function showForm(event) {
     const form = document.querySelector('#form');                   // Форма обратной связи
     const tableInfo = document.querySelector('.info-table');        // Таблица с параметрами объекта
     const objectBrief = document.querySelector('.object-brief');    // Контейнер с таблицей и формой
+    const labels = form.querySelectorAll('label');
 
-    objectBrief.style.flexDirection = 'column';         // Реструтурируем для вывода формы вверх
+    objectBrief.style.flexDirection = 'column';             // Реструтурируем для вывода формы вверх
     tableInfo.style.order = '2';
-    formP.classList.toggle("hidden");                   // Замещаем текст формой
+    formP.classList.toggle("hidden");                       // Замещаем текст формой
     form.classList.toggle("hidden");
 
-    const moreAside = objectReview.querySelector('#more');  /* Обработчик для модального.. */
-    moreAside.addEventListener('click', toggleModal);       /* ..окна с соглашением */
+    objectBrief.scrollIntoView({behavior: "smooth"});       // Скроллим к форме
+    labels.forEach(label => label.classList.add('animated'));
+    labels.forEach(label => label.classList.add('pulse'));
+    labels.forEach(label => label.classList.add('delay-0.6s'));
+
+    const moreAside = objectReview.querySelector('#more');  // Обработчик для модального..
+    moreAside.addEventListener('click', toggleModal);       // ..окна с соглашением
 }
 
 // Раскрываем подробное описание объекта (при клике на "Подробнее")

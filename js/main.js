@@ -24,7 +24,7 @@ function toggleModal() {
     modal.classList.toggle("is_open");
 }
 
-// Раскрываем форму обратной связи
+// Раскрываем форму обратной связи           \\ ДОДЕЛАТЬ!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function showForm(event) {
     event.preventDefault();
 
@@ -46,6 +46,10 @@ function showForm(event) {
 
     const moreAside = objectReview.querySelector('#more');  // Обработчик для модального..
     moreAside.addEventListener('click', toggleModal);       // ..окна с соглашением
+
+
+    // ДОДЕЛАТЬ ФОРМУ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    form.querySelector('.submit-button').addEventListener('click', evt => evt.preventDefault())
 }
 
 // Раскрываем подробное описание объекта (при клике на "Подробнее")
@@ -249,11 +253,15 @@ function init() {
     ok.addEventListener('click', toggleModal);
 }
 
-// Инициализация для страницы index.html
+// Инициализация для страницы index.html            \\ ДОДЕЛАТЬ ФОРМУ!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function indexInit() {
     close.addEventListener('click', toggleModal);
     ok.addEventListener('click', toggleModal);
     more.addEventListener('click', toggleModal);
+
+
+    // Форма обратной связи СДЕЛАТЬ!!!!!!!!!!!!!!!!!!
+    document.querySelector('.submit-button').addEventListener('click', evt => evt.preventDefault())
 }
 
 // Страница определяется по наличию списка объектов
